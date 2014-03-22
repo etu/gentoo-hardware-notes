@@ -19,7 +19,7 @@ Description: 4G/LTE USB Modem
 :      [*] USB driver for GSM and CDMA modems -- USB_SERIAL_OPTION
 
 The star(=*=) ones is in my experience required to get this chip to work, and
-the module(=M=) ones seems handy and does hurt to have.
+the module(=M=) ones seems handy and does not hurt to have.
 
 ** wvdial/ppp
 : $ cat /etc/wvdial.conf
