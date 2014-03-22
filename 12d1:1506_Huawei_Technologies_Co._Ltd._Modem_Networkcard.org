@@ -1,0 +1,49 @@
+* 12d1:1506 Huawei Technologies Co., Ltd. Modem/Networkcard
+
+Description: 4G/LTE USB Modem
+
+** Kernel Config
+: Device Drivers --->
+:  [*] Network device support --->
+:    [*] PPP (point-to-point protocol) support -- PPP
+:      [M] PPP BSD-Compress compression -- PPP_BSDCOMP
+:      [M] PPP Deflate compression -- PPP_DEFLATE
+:      [M] PPP MPPE compression (encryption) -- PPP_MPPE
+:      [M] PPP over Ethernet - PPPOE
+:      [*] PPP support for async serial ports -- PPP_ASYNC
+:      [M] PPP support for sync tty ports -- PPP_SYNC_TTY
+:  [*] USB support --->
+:    <*> USB Serial Converter support --->
+:      [*] USB Serial Console device support -- USB_SERIAL_CONSOLE
+:      [*] USB Generic Serial Driver -- USB_SERIAL_GENERIC
+:      [*] USB driver for GSM and CDMA modems -- USB_SERIAL_OPTION
+
+The star(=*=) ones is in my experience required to get this chip to work, and
+the module(=M=) ones seems handy and does hurt to have.
+
+** wvdial/ppp
+: $ cat /etc/wvdial.conf
+: [Dialer Defaults]
+: Init1 = ATZ
+: Init2 = ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
+: Init3 = AT+CGDCONT=1,"IP","internet.telenor.se","",0,0
+: Phone = *99#
+: Modem Type = Analog Modem
+: Baud = 9600
+: Modem = /dev/ttyUSB0
+: ISDN = 0
+: Username = 4G
+: Password = 4G
+: Stupid Mode = 1
+
+Username and Password seems to not matter, but I have read it *should* be 4G:4G
+when using Telenor as operator.
+
+** Eventual modeswitching
+Does not seem to be required to do by hand anymore, but just for reference from
+my first experience when I first got this thing to work...
+
+Modem showed up as =12d1:1505= and needed to be [[http://www.draisberghof.de/usb_modeswitch/bb/viewtopic.php?t=669&sid=c9579fe9d25c8377eb8f572e657b751a][modeswitched]] to be =12d1:1506=.
+
+But modeswitch is patched since a good while.
+
