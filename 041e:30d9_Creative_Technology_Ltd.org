@@ -1,0 +1,19 @@
+* 041e:30d9 Creative Technology, Ltd
+
+Description: Wireless Gaming headset, WoW Branded.
+
+** Kernel Config
+: Device Drivers --->
+:   Multifunction device drivers --->
+:     <*> Wolfson Microelectronics Arizona platform with I2C -- MFD_ARIZONA_I2C
+:     [*] Wolfson Microelectronics WM5102 -- MFD_WM5102
+:   USB Support --->
+:     <*> EHCI HCD (USB 2.0) support -- USB_EHCI_HCD
+:       [*] Root Hub Transaction Translators -- USB_EHCI_ROOT_HUB_TT
+:       [*] Improved Transaction Translator scheduling -- USB_EHCI_TT_NEWSCHED
+
+Without the drivers from the Multifunction device drivers section, the soundcard
+did just behave weird, sometimes it worked, sometimes not. And without the USB
+Support options enabled, the microphone didn't work for me. But with these
+modules -- it works perfectly out of the box.
+
