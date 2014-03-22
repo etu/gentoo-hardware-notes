@@ -1,0 +1,5 @@
+* Hardware Notes
+
+Notes about hardware I had any kind of issue to get running. Just to keep track
+of what i've done to get it work for future reference.
+
